@@ -1,7 +1,7 @@
 
 # ℹ️ Smplayit Youtube Clone
 
-__Smplayit is a website clone version of Youtube.__
+### Smplayit is a website clone version of Youtube.
 
 ---
 
