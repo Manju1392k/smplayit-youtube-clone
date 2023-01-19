@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block tittle %}{{onevideo.Video_Tittle}}{% endblock tittle %}
+
+{% block maincontent %}
+
+<div class="main">
+
+    {% comment %} Video tag for playing video {% endcomment %}
+    <video controls class='video'>
+        <source src='/media/{{onevideo.Video}}' type='video/mp4'>
+    </video>
+
+    {% comment %} Div for Views counter {% endcomment %}
+            <div class='views'>
+                <i class="bi bi-eye-fill"></i>
+                <h4 class='maringview'>Views: 5k</h4>
+            </div>
+
+            <hr />
+            
+            {% comment %} Div for Description {% endcomment %}
+            <h1 class='description'>Description</h1>
+                <p class='paratext'>{{onevideo.Video_Description}}</p>
+
+                <hr />
+
+                <h1 class='description'>Recommended Videos</h1>
+
+                {% comment %} Div for Recommended Videos {% endcomment %}
+                <div class="container">
+
+                    {% comment %} Div for showing remaining videos {% endcomment %}
+                    {% for video in allvideos %}
+                    <div class="videothumbline">
+                        <a href='{% url 'Videoplaying' video.id %}'>
+                        <img src='/media/{{video.Video_Thumbline}}'>
+                        <div class='views'>
+                            <i class="bi bi-eye-fill"></i>
+                            <h4 class='maringview'>Views: 5k</h4>
+                        </div>
+                        <div class="heading">
+                            <h4>{{video.Video_Tittle}}</h4>
+                        </div>
+                    </a>
+                    </div>
+                    {% endfor %}
+            
+                </div>
+
+</div>
+
+{% endblock maincontent %}

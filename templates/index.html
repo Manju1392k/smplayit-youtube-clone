@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block tittle %}Playit{% endblock tittle %}
+
+{% block maincontent %}
+
+<div class="main">
+
+    <div class="container">
+
+        {% comment %} Div for video thumbline, tittle box {% endcomment %}
+        {% for video in allvideos %}
+        <div class="videothumbline">
+            <a href='{% url 'Videoplaying' video.id %}'>
+            <img src='/media/{{video.Video_Thumbline}}'>
+            <div class='views'>
+                <i class="bi bi-eye-fill"></i>
+                <h4 class='maringview'>Views: 5k</h4>
+            </div>
+            <div class="heading">
+                <h4>{{video.Video_Tittle}}</h4>
+            </div>
+        </a>
+        </div>
+        {% endfor %}
+
+        {% comment %} another div for search results {% endcomment %}
+        {% for video in result %}
+        <div class="videothumbline">
+            <a href='{% url 'Videoplaying' video.id %}'>
+            <img src='/media/{{video.Video_Thumbline}}'>
+            <div class='views'>
+                <i class="bi bi-eye-fill"></i>
+                <h4 class='maringview'>Views: 5k</h4>
+            </div>
+            <div class="heading">
+                <h4>{{video.Video_Tittle}}</h4>
+            </div>
+        </a>
+        </div>
+        {% endfor %}
+
+    </div>
+
+</div>
+
+{% endblock maincontent %}

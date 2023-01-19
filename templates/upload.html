@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block tittle %}UploadFile{% endblock tittle %}
+
+{% block maincontent %}
+
+<div class="main">
+
+    {% comment %} form for upload video {% endcomment %}
+    <form method='post' enctype='multipart/form-data'>
+        {% csrf_token %}
+        {% comment %} Div for form background styling {% endcomment %}
+        <div class="formupload">
+            <h4>Video Tittle</h4>
+            <input type='text' class='uploadinput' placeholder='Video Tittle' name='Video_Tittle' required>
+            <h4>Video Description</h4>
+            <textarea type='text' class='uploadinput' name='Video_Description' placeholder='Video Description' required></textarea>
+            <h4>Video Thumbline</h4>
+            <input type='file' class='uploadbutton' name='Video_Thumbline' accept='image/*' required>
+            <h4>Video</h4>
+            <input type='file' class='uploadbutton' name='Video' accept='video/*' required>
+            <br>
+            <input type='submit' value='Upload' class='uploadsubmit'>
+        </div>
+    </form>
+
+</div>
+
+{% endblock maincontent %}

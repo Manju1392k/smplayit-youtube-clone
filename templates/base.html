@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block tittle %}{% endblock tittle %}</title>
+
+    <link rel="stylesheet" href="/static/style.css">
+
+    <link rel="shortcut icon" href="/static/fav.png" type="image/png">
+
+</head>
+<body>
+
+  {% comment %} Div for messagesinfo box {% endcomment %}
+  {% for message in messages %}  
+  <div class="messagemain" id='messageboxtwo'>
+    <div class="messages">
+      <div class="messagebox">
+        <h4>{{message}}</h4>
+      </div>
+      <i class="bi bi-x-circle-fill closemessageicon" onclick='MessageClose()'></i>
+    </div>
+  </div>
+{% endfor %}
+
+{% comment %} Div for navbar {% endcomment %}
+<div class="navbar">
+
+  <div class='flex'>
+    <a href='{% url 'home' %}'>
+    <img src="/static/logo.jpg" alt="" class='logoimage'>
+    <h1>Playit</h1>
+    </a>
+  </div>
+
+  {% comment %} Div for searchbox {% endcomment %}
+  <div class='searchbox'>
+    <form action="{% url 'search' %}" method='post'>
+        {% csrf_token %}
+        <input type='search' class='searchinput' placeholder='Search' name='search' id='search' required>
+        <button type='submit' class='btn1'><i class="bi bi-search icon"></i></button>
+    </form>
+  </div>
+
+  {% comment %} Div for buttons {% endcomment %}
+  <div class="buttons">
+    <div class="upload">
+        <i class="bi bi-camera-reels"></i>
+        <a href='{% url 'uploading' %}'>UploadVideo</a>
+    </div>
+    <div class="upload">
+        <i class="bi bi-box-arrow-in-right"></i>
+        <a href='#'>Login</a>
+    </div>
+  </div>
+
+</div>
+
+{% comment %} mobilephone navbar {% endcomment %}
+
+<div class="mobilenavbar">
+  <a href='{% url 'home' %}'>
+  <img src="/static/logo.jpg" alt="" class='logoimage'>
+  </a>
+
+  <i class="bi bi-list menuicons" onclick='OpenMenu()'></i>
+</div>
+<div class="searchmobile">
+  <div class='searchbox'>
+    <form action="{% url 'search' %}" method='post'>
+        {% csrf_token %}
+        <input type='search' class='searchinput' placeholder='Search' name='search' id='search' required>
+        <button type='submit' class='btn1'><i class="bi bi-search icon"></i></button>
+    </form>
+  </div>
+</div>
+
+{% comment %} Div for MobilePhone Menubar {% endcomment %}
+<div class="mobilemenubar" id='mobilemenubar'>
+  <i class="bi bi-x-circle-fill closemenuicon" onclick='Menuclose()'></i>
+  <div class="upload">
+    <i class="bi bi-camera-reels"></i>
+    <a href='{% url 'uploading' %}'>UploadVideo</a>
+</div>
+<div class="upload">
+    <i class="bi bi-box-arrow-in-right"></i>
+    <a href='#'>Login</a>
+</div>
+</div>
+
+{% comment %} block for main content {% endcomment %}
+{% block maincontent %}{% endblock maincontent %}
+
+
+<script>
+
+let Messagebox = document.getElementById('messageboxtwo')
+let Menubar = document.getElementById('mobilemenubar')
+
+{% comment %} function for messageinfo closing {% endcomment %}
+function MessageClose(){
+  Messagebox.remove();
+}
+
+{% comment %} function for Opening Menubar {% endcomment %}
+function OpenMenu(){
+  Menubar.style.display = 'flex';
+}
+
+{% comment %} function for closing Menubar {% endcomment %}
+function Menuclose(){
+  Menubar.style.display = 'none';
+}
+
+</script>
+    
+</body>
+</html>
